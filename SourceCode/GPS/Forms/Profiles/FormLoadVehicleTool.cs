@@ -425,10 +425,14 @@ namespace AgOpenGPS.Forms.Profiles
 
             if (vehicleChanged || toolChanged)
             {
+                LogDiagnosticCheckpoint($"Vehicle/tool runtime reload starting - VehicleChanged:{vehicleChanged} ToolChanged:{toolChanged}");
                 _formGPS.vehicle = new CVehicle(_formGPS);
+                LogDiagnosticCheckpoint("Vehicle/tool runtime reload vehicle created");
                 _formGPS.tool = new CTool(_formGPS);
+                LogDiagnosticCheckpoint("Vehicle/tool runtime reload tool created");
 
                 _formGPS.LoadSettings();
+                LogDiagnosticCheckpoint("Vehicle/tool runtime reload LoadSettings complete");
                 _formGPS.SetVehicleTextures();
                 _formGPS.SendSettings();
                 _formGPS.SendRelaySettingsToMachineModule();
@@ -519,8 +523,11 @@ namespace AgOpenGPS.Forms.Profiles
             RegistrySettings.Save(RegKeys.vehicleProfileName, defaultName);
             Log.EventWriter($"Vehicle loaded: {defaultName}");
 
+            LogDiagnosticCheckpoint("Default vehicle runtime reload starting");
             _formGPS.vehicle = new CVehicle(_formGPS);
+            LogDiagnosticCheckpoint("Default vehicle runtime reload vehicle created");
             _formGPS.LoadSettings();
+            LogDiagnosticCheckpoint("Default vehicle runtime reload LoadSettings complete");
             _formGPS.SetVehicleTextures();
             _formGPS.SendSettings();
 
@@ -564,8 +571,11 @@ namespace AgOpenGPS.Forms.Profiles
             RegistrySettings.Save(RegKeys.toolProfileName, defaultName);
             Log.EventWriter($"Tool loaded: {defaultName}");
 
+            LogDiagnosticCheckpoint("Default tool runtime reload starting");
             _formGPS.tool = new CTool(_formGPS);
+            LogDiagnosticCheckpoint("Default tool runtime reload tool created");
             _formGPS.LoadSettings();
+            LogDiagnosticCheckpoint("Default tool runtime reload LoadSettings complete");
             _formGPS.SendSettings();
             _formGPS.SendRelaySettingsToMachineModule();
 
@@ -590,6 +600,12 @@ namespace AgOpenGPS.Forms.Profiles
         private string PromptForName(string title, string prompt)
         {
             return AgOpenGPS.Forms.FormInputDialog.ShowInput(title, prompt, _formGPS);
+        }
+
+        private static void LogDiagnosticCheckpoint(string message)
+        {
+            Log.EventWriter("DIAGNOSTIC: " + message);
+            Log.FileSaveSystemEvents();
         }
 
         private string PromptForName(string title, string prompt, string defaultValue)

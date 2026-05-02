@@ -314,15 +314,20 @@ namespace AgOpenGPS
 
         public FormGPS()
         {
+            LogDiagnosticCheckpoint("FormGPS constructor starting");
+
             //winform initialization
             InitializeComponent();
+            LogDiagnosticCheckpoint("FormGPS InitializeComponent complete");
 
             InitializeLanguages();
+            LogDiagnosticCheckpoint("FormGPS InitializeLanguages complete");
 
             AppCore = new ApplicationCore(
                 new DirectoryInfo(RegistrySettings.baseDirectory),
                 null,
                 null);
+            LogDiagnosticCheckpoint("FormGPS ApplicationCore created");
 
             //time keeper
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
@@ -335,8 +340,10 @@ namespace AgOpenGPS
 
             //our vehicle made with gl object and pointer of mainform
             vehicle = new CVehicle(this);
+            LogDiagnosticCheckpoint("FormGPS vehicle created");
 
             tool = new CTool(this);
+            LogDiagnosticCheckpoint("FormGPS tool created");
 
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
@@ -367,6 +374,7 @@ namespace AgOpenGPS
 
             ////new instance of auto headland turn
             yt = new CYouTurn(this);
+            LogDiagnosticCheckpoint("FormGPS you-turn created");
 
             //module communication
             mc = new CModuleComm(this);
@@ -407,6 +415,13 @@ namespace AgOpenGPS
 
             //Smart WAS Calibration system
             smartWAS = new CSmartWAS(this);
+            LogDiagnosticCheckpoint("FormGPS constructor complete");
+        }
+
+        private static void LogDiagnosticCheckpoint(string message)
+        {
+            Log.EventWriter("DIAGNOSTIC: " + message);
+            Log.FileSaveSystemEvents();
         }
 
         private void FormGPS_Load(object sender, EventArgs e)
@@ -494,7 +509,9 @@ namespace AgOpenGPS
             }
 
             // load all the gui elements in gui.designer.cs
+            LogDiagnosticCheckpoint("FormGPS LoadSettings starting");
             LoadSettings();
+            LogDiagnosticCheckpoint("FormGPS LoadSettings complete");
 
             //for field data and overlap
             oglZoom.Width = 400;
@@ -547,6 +564,7 @@ namespace AgOpenGPS
             if (missingVehicle || missingTool)
             {
                 Log.EventWriter($"Profile check - Vehicle:{!missingVehicle} Tool:{!missingTool}");
+                LogDiagnosticCheckpoint("Profile load dialog required");
 
                 // Check what profiles are available
                 string[] oldProfiles = CSettingsMigration.GetConvertibleFiles();
@@ -587,7 +605,9 @@ namespace AgOpenGPS
 
                 using (var form = new AgOpenGPS.Forms.Profiles.FormLoadVehicleTool(this))
                 {
+                    LogDiagnosticCheckpoint("Profile load dialog showing");
                     form.ShowDialog(this);
+                    LogDiagnosticCheckpoint("Profile load dialog closed");
                 }
 
                 // Scenario 2a: User cancelled without creating profiles - create defaults
@@ -607,12 +627,17 @@ namespace AgOpenGPS
                     // Environment already uses "Default"
 
                     // Load the defaults
+                    LogDiagnosticCheckpoint("Default profile load starting");
                     Properties.VehicleSettings.Default.Load("DefaultVehicle");
                     Properties.ToolSettings.Default.Load("DefaultTool");
+                    LogDiagnosticCheckpoint("Default profile settings loaded");
 
                     vehicle = new CVehicle(this);
+                    LogDiagnosticCheckpoint("Default profile vehicle created");
                     tool = new CTool(this);
+                    LogDiagnosticCheckpoint("Default profile tool created");
                     LoadSettings();
+                    LogDiagnosticCheckpoint("Default profile LoadSettings complete");
                     SetVehicleTextures();
                     SendSettings();
 
