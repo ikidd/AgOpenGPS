@@ -135,6 +135,7 @@ All settings are stored in Windows Registry (not .config files).
 | `setVehicle_toolLookAheadOn` | double | 1.0 | Lookahead when section ON (meters) |
 | `setVehicle_toolLookAheadOff` | double | 0.5 | Lookahead when section OFF (meters) |
 | `setVehicle_hitchLength` | double | -1.0 | Hitch length (meters) |
+| `setTool_minTurnRadius` | double | 0.0 | Minimum U-turn radius required by the tool; 0 uses the base U-turn radius |
 
 ## Tool Configuration
 

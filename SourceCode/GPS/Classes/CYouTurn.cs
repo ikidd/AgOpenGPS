@@ -102,6 +102,16 @@ namespace AgOpenGPS
             uTurnSmoothing = (int)Properties.Settings.Default.setAS_uTurnSmoothing;
         }
 
+        public double GetEffectiveTurnRadius()
+        {
+            return GetEffectiveTurnRadius(youTurnRadius, mf?.tool?.minTurnRadius ?? 0.0);
+        }
+
+        public static double GetEffectiveTurnRadius(double baseTurnRadius, double toolMinTurnRadius)
+        {
+            return Math.Max(baseTurnRadius, toolMinTurnRadius);
+        }
+
         //find next not worked lane after the defined lanes to skip
         private int GetNextNotWorkedTrack(bool isTurnLeft, int rowSkipsWidth, bool isAB)
         {
@@ -166,12 +176,12 @@ namespace AgOpenGPS
             //TODO: is calculated many taimes after the priveous turn is complete
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
-            pointSpacing = youTurnRadius * 0.1;
+            pointSpacing = GetEffectiveTurnRadius() * 0.1;
 
             if (uTurnStyle == 0)
             {
                 //Albin turn
-                if (turnOffset > (youTurnRadius * 2.0))
+                if (turnOffset > (GetEffectiveTurnRadius() * 2.0))
                 {
                     return CreateCurveWideTurn();
                 }
@@ -211,13 +221,13 @@ namespace AgOpenGPS
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth
                 + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
-            pointSpacing = youTurnRadius * 0.1;
+            pointSpacing = GetEffectiveTurnRadius() * 0.1;
 
             if (uTurnStyle == 0)
             {
 
                 //Wide turn
-                if (turnOffset > (youTurnRadius * 2.0))
+                if (turnOffset > (GetEffectiveTurnRadius() * 2.0))
                 {
                     return CreateABWideTurn();
                 }
@@ -297,7 +307,7 @@ namespace AgOpenGPS
                         head = currentPos.heading;
 
                         CDubins dubYouTurnPath = new CDubins();
-                        CDubins.turningRadius = youTurnRadius;
+                        CDubins.turningRadius = GetEffectiveTurnRadius();
 
                         //now we go the other way to turn round
                         double invertHead = currentPos.heading - Math.PI;
@@ -520,7 +530,7 @@ namespace AgOpenGPS
                             double turnParameter = isTurnLeft ? -1.0 : 1.0;
 
                             //Update the heading
-                            currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                            currentPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                             //Add the new coordinate to the path
                             ytList.Add(currentPos);
@@ -629,7 +639,7 @@ namespace AgOpenGPS
                             double turnParameter = isTurnLeft ? 1.0 : -1.0;
 
                             //Update the heading
-                            currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                            currentPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                             //Add the new coordinate to the path
                             ytList2.Add(currentPos);
@@ -869,7 +879,7 @@ namespace AgOpenGPS
                     inClosestTurnPt = new CClose(closestTurnPt);
 
                     CDubins dubYouTurnPath = new CDubins();
-                    CDubins.turningRadius = youTurnRadius;
+                    CDubins.turningRadius = GetEffectiveTurnRadius();
 
                     //grab the vehicle widths and offsets
                     double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
@@ -1000,7 +1010,7 @@ namespace AgOpenGPS
                         double turnParameter = isTurnLeft ? -1.0 : 1.0;
 
                         //Update the heading
-                        currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                        currentPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                         //Add the new coordinate to the path
                         ytList.Add(currentPos);
@@ -1075,7 +1085,7 @@ namespace AgOpenGPS
                         double turnParameter = isTurnLeft ? 1.0 : -1.0;
 
                         //Update the heading
-                        pointPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                        pointPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                         //Add the new coordinate to the path
                         ytList2.Add(pointPos);
@@ -1261,7 +1271,7 @@ namespace AgOpenGPS
         {
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnLeft ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
-            double pointSpacing = youTurnRadius * 0.1;
+            double pointSpacing = GetEffectiveTurnRadius() * 0.1;
 
             isHeadingSameWay = mf.curve.isHeadingSameWay;
 
@@ -1324,7 +1334,7 @@ namespace AgOpenGPS
                     double turnParameter = isTurnLeft ? -1.0 : 1.0;
 
                     //Update the heading
-                    currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                    currentPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                     //Add the new coordinate to the path
                     ytList.Add(currentPos);
@@ -1459,7 +1469,7 @@ namespace AgOpenGPS
 
         public bool KStyleTurnAB()
         {
-            double pointSpacing = youTurnRadius * 0.1;
+            double pointSpacing = GetEffectiveTurnRadius() * 0.1;
 
             int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.pivotAxlePos);
             if (mf.makeUTurnCounter < 4 || turnIndex != 0)
@@ -1526,7 +1536,7 @@ namespace AgOpenGPS
                     if (isTurnLeft) turnParameter = -1.0;
 
                     //Update the heading
-                    currentPos.heading += (pointSpacing / youTurnRadius) * turnParameter;
+                    currentPos.heading += (pointSpacing / GetEffectiveTurnRadius()) * turnParameter;
 
                     //Add the new coordinate to the path
                     ytList.Add(currentPos);
@@ -2543,7 +2553,7 @@ namespace AgOpenGPS
             double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnRight ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
 
             CDubins dubYouTurnPath = new CDubins();
-            CDubins.turningRadius = youTurnRadius;
+            CDubins.turningRadius = GetEffectiveTurnRadius();
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
             if (!isHeadingSameWay) head += 3.14;

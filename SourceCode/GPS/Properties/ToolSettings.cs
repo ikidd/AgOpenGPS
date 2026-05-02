@@ -22,6 +22,7 @@ namespace AgOpenGPS.Properties
         public double setVehicle_toolLookAheadOn = 1;
         public double setVehicle_toolLookAheadOff = 0.5;
         public double setVehicle_hitchLength = -1;
+        public double setTool_minTurnRadius = 0.0;
 
         public bool setTool_isToolTrailing = true;
         public bool setTool_isToolRearFixed = false;

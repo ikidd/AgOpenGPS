@@ -19,6 +19,7 @@ namespace AgOpenGPS
 
         public double overlap;
         public double trailingHitchLength, tankTrailingHitchLength, trailingToolToPivotLength;
+        public double minTurnRadius;
         public double offset;
 
         public double lookAheadOffSetting, lookAheadOnSetting;
@@ -64,6 +65,7 @@ namespace AgOpenGPS
             //from settings grab the vehicle specifics
 
             trailingToolToPivotLength = Properties.ToolSettings.Default.setTool_trailingToolToPivotLength;
+            minTurnRadius = Properties.ToolSettings.Default.setTool_minTurnRadius;
             width = Properties.ToolSettings.Default.setVehicle_toolWidth;
             overlap = Properties.ToolSettings.Default.setVehicle_toolOverlap;
 
