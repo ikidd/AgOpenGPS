@@ -514,11 +514,16 @@ namespace AgOpenGPS
             LogDiagnosticCheckpoint("FormGPS LoadSettings complete");
 
             //for field data and overlap
+            LogDiagnosticCheckpoint("Configuring zoom OpenGL control starting");
             oglZoom.Width = 400;
+            LogDiagnosticCheckpoint("Zoom OpenGL control width set");
             oglZoom.Height = 400;
+            LogDiagnosticCheckpoint("Zoom OpenGL control height set");
             oglZoom.Left = 100;
             oglZoom.Top = 100;
+            LogDiagnosticCheckpoint("Configuring zoom OpenGL control complete");
 
+            LogDiagnosticCheckpoint("Auto-start AgIO check starting");
             if (RegistrySettings.vehicleProfileName != "" && Properties.Settings.Default.setDisplay_isAutoStartAgIO)
             {
                 //Start AgIO process
@@ -545,21 +550,31 @@ namespace AgOpenGPS
                 }
             }
 
+            LogDiagnosticCheckpoint("Auto-start AgIO check complete");
+
             //nmea limiter
+            LogDiagnosticCheckpoint("UDP watch timer starting");
             udpWatch.Start();
+            LogDiagnosticCheckpoint("UDP watch timer started");
 
+            LogDiagnosticCheckpoint("Panel drag setup starting");
             panelDrag.Draggable(true);
+            LogDiagnosticCheckpoint("Panel drag setup complete");
 
+            LogDiagnosticCheckpoint("Hotkeys loading starting");
             hotkeys = new char[19];
 
             hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
+            LogDiagnosticCheckpoint("Hotkeys loading complete");
 
+            LogDiagnosticCheckpoint("Profile missing check starting");
             // Check if any profile is missing (registry empty OR file doesn't exist)
             bool missingVehicle = string.IsNullOrEmpty(RegistrySettings.vehicleProfileName) ||
                                    !File.Exists(Path.Combine(RegistrySettings.vehiclesDirectory, RegistrySettings.vehicleProfileName + ".xml"));
             bool missingTool = string.IsNullOrEmpty(RegistrySettings.toolProfileName) ||
                                  !File.Exists(Path.Combine(RegistrySettings.toolsDirectory, RegistrySettings.toolProfileName + ".xml"));
             // Environment is no longer a separate profile - created automatically
+            LogDiagnosticCheckpoint($"Profile missing check complete - VehicleMissing:{missingVehicle} ToolMissing:{missingTool}");
 
             if (missingVehicle || missingTool)
             {
@@ -577,6 +592,8 @@ namespace AgOpenGPS
                 bool registryExists = !string.IsNullOrEmpty(RegistrySettings.vehicleProfileName) ||
                                       !string.IsNullOrEmpty(RegistrySettings.toolProfileName) ||
                                       !string.IsNullOrEmpty(RegistrySettings.legacyVehicleFileName);
+
+                LogDiagnosticCheckpoint($"Profile availability - Old:{oldProfiles?.Length ?? 0} HasOld:{hasOldProfiles} HasNew:{hasNewProfiles} RegistryExists:{registryExists}");
 
                 if (registryExists && !hasNewProfiles && !hasOldProfiles)
                 {
@@ -644,8 +661,10 @@ namespace AgOpenGPS
                     TimedMessageBox(2000, "Profiles Created", "Default profiles created");
                 }
             }
+            LogDiagnosticCheckpoint("AgShare client initialization starting");
             //Init AgShareClient
             agShareClient = new AgShareClient(Settings.Default.AgShareServer, Settings.Default.AgShareApiKey);
+            LogDiagnosticCheckpoint("FormGPS load complete");
         }
 
         #region Shutdown Handling

@@ -24,12 +24,15 @@ namespace AgOpenGPS.Forms.Profiles
 
         public FormLoadVehicleTool(FormGPS formGPS)
         {
+            LogDiagnosticCheckpoint("FormLoadVehicleTool constructor starting");
             _formGPS = formGPS;
             InitializeComponent();
+            LogDiagnosticCheckpoint("FormLoadVehicleTool InitializeComponent complete");
         }
 
         private void FormLoadVehicleTool_Load(object sender, EventArgs e)
         {
+            LogDiagnosticCheckpoint("FormLoadVehicleTool Load starting");
             // Set localized form title and labels
             this.Text = gStr.gsVehicleTool;
             buttonLoad.Text = gStr.gsLoad;
@@ -37,7 +40,9 @@ namespace AgOpenGPS.Forms.Profiles
             buttonConvertOld.Text = gStr.gsConvertOldProfiles;
 
             RefreshVehicleList();
+            LogDiagnosticCheckpoint("FormLoadVehicleTool vehicle list refreshed");
             RefreshToolList();
+            LogDiagnosticCheckpoint("FormLoadVehicleTool tool list refreshed");
 
             // Pre-select and preview the currently active vehicle/tool
             if (!string.IsNullOrEmpty(RegistrySettings.vehicleProfileName))
@@ -62,6 +67,7 @@ namespace AgOpenGPS.Forms.Profiles
             UpdateCurrentLabels();
             UpdateSelectedLabels();
             UpdateLoadButton();
+            LogDiagnosticCheckpoint("FormLoadVehicleTool Load complete");
         }
 
         private void UpdateCurrentLabels()
