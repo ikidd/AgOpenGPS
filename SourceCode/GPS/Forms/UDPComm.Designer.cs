@@ -528,6 +528,7 @@ namespace AgOpenGPS
         /// </summary>
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
+            LogDiagnosticCheckpoint($"FormGPS OnFormClosed - CloseReason:{e.CloseReason}");
             if (_hotkeyFilter != null)
             {
                 Application.RemoveMessageFilter(_hotkeyFilter);

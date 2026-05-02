@@ -664,6 +664,7 @@ namespace AgOpenGPS
             LogDiagnosticCheckpoint("AgShare client initialization starting");
             //Init AgShareClient
             agShareClient = new AgShareClient(Settings.Default.AgShareServer, Settings.Default.AgShareApiKey);
+            LogDiagnosticCheckpoint("AgShare client initialization complete");
             LogDiagnosticCheckpoint("FormGPS load complete");
         }
 
@@ -674,7 +675,12 @@ namespace AgOpenGPS
 
         private async void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (isShuttingDown) return;
+            LogDiagnosticCheckpoint($"FormGPS_FormClosing entered - CloseReason:{e.CloseReason} Cancel:{e.Cancel} IsShuttingDown:{isShuttingDown}");
+            if (isShuttingDown)
+            {
+                LogDiagnosticCheckpoint("FormGPS_FormClosing ignored because shutdown already in progress");
+                return;
+            }
 
             // Set shutdown flag to prevent re-entrance
             isShuttingDown = true;
@@ -700,7 +706,9 @@ namespace AgOpenGPS
             }
 
             // Get user choice for shutdown behavior
+            LogDiagnosticCheckpoint("FormGPS shutdown prompt starting");
             int choice = SaveOrNot();
+            LogDiagnosticCheckpoint($"FormGPS shutdown prompt complete - Choice:{choice}");
             if (choice == 1)
             {
                 // User cancelled shutdown
@@ -718,7 +726,10 @@ namespace AgOpenGPS
             try
             {
                 Log.EventWriter("Closing Application " + DateTime.Now);
+                Log.FileSaveSystemEvents();
+                LogDiagnosticCheckpoint($"ShowSavingFormAndShutdown starting - Choice:{choice}");
                 await ShowSavingFormAndShutdown(choice);
+                LogDiagnosticCheckpoint("ShowSavingFormAndShutdown complete");
             }
             catch (Exception ex)
             {

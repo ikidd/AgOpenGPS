@@ -38,7 +38,11 @@ namespace AgOpenGPS
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                    Log.EventWriter("DIAGNOSTIC: Application.Run starting");
+                    Log.FileSaveSystemEvents();
                     Application.Run(new FormGPS());
+                    Log.EventWriter("DIAGNOSTIC: Application.Run returned");
+                    Log.FileSaveSystemEvents();
                 }
                 else
                 {
@@ -63,6 +67,24 @@ namespace AgOpenGPS
                 Log.EventWriter("UNHANDLED UI THREAD EXCEPTION: " + e.Exception);
                 Log.FileSaveSystemEvents();
                 MessageBox.Show(e.Exception.ToString(), "AgOpenGPS unhandled UI exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+
+            Application.ApplicationExit += (sender, e) =>
+            {
+                Log.EventWriter("DIAGNOSTIC: ApplicationExit event fired");
+                Log.FileSaveSystemEvents();
+            };
+
+            Application.ThreadExit += (sender, e) =>
+            {
+                Log.EventWriter("DIAGNOSTIC: UI ThreadExit event fired");
+                Log.FileSaveSystemEvents();
+            };
+
+            AppDomain.CurrentDomain.ProcessExit += (sender, e) =>
+            {
+                Log.EventWriter("DIAGNOSTIC: ProcessExit event fired");
+                Log.FileSaveSystemEvents();
             };
 
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
