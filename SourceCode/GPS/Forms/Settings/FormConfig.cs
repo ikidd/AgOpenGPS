@@ -53,6 +53,7 @@ namespace AgOpenGPS
 
             nudMinCoverage.Controls[0].Enabled = false;
             nudDefaultSectionWidth.Controls[0].Enabled = false;
+            nudToolMinTurnRadius.Controls[0].Enabled = false;
 
             nudSection01.Controls[0].Enabled = false;
             nudSection02.Controls[0].Enabled = false;
@@ -305,6 +306,7 @@ namespace AgOpenGPS
 
             nudDefaultSectionWidth.Maximum = Math.Round(nudDefaultSectionWidth.Maximum / 2.54M);
             nudDefaultSectionWidth.Minimum = Math.Round(nudDefaultSectionWidth.Minimum / 3.0M);
+            nudToolMinTurnRadius.Maximum = Math.Round(nudToolMinTurnRadius.Maximum * 3.28M);
 
             nudSection01.Maximum = Math.Round(nudSection01.Maximum / 2.54M);
             nudSection01.Minimum = Math.Round(nudSection01.Minimum / 2.54M);

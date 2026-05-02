@@ -688,6 +688,8 @@ namespace AgOpenGPS
             }
 
             label178.Text = mf.unitsInCm;
+            labelToolMinTurnRadiusUnits.Text = mf.unitsFtM;
+            nudToolMinTurnRadius.Value = (decimal)Math.Round(Properties.ToolSettings.Default.setTool_minTurnRadius * mf.m2FtOrM, 1);
         }
 
         private void tabTSections_Leave(object sender, EventArgs e)
@@ -1116,6 +1118,16 @@ namespace AgOpenGPS
             mf.tool.isSectionsNotZones = !cboxIsUnique.Checked;
             Properties.ToolSettings.Default.setTool_isSectionsNotZones = !cboxIsUnique.Checked;
             tabTSections_Enter(this, e);
+        }
+
+        private void nudToolMinTurnRadius_Click(object sender, EventArgs e)
+        {
+            if (((NudlessNumericUpDown)sender).ShowKeypad(this))
+            {
+                mf.tool.minTurnRadius = (double)nudToolMinTurnRadius.Value * mf.ftOrMtoM;
+                Properties.ToolSettings.Default.setTool_minTurnRadius = mf.tool.minTurnRadius;
+                Properties.ToolSettings.Default.Save();
+            }
         }
 
         private void nudNumberOfSections_Click(object sender, EventArgs e)
