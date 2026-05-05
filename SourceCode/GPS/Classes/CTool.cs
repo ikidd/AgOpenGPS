@@ -29,6 +29,7 @@ namespace AgOpenGPS
         public double lookAheadDistanceOffPixelsLeft, lookAheadDistanceOffPixelsRight;
 
         public bool isToolTrailing, isToolTBT;
+        public bool isMinTurnRadiusAppliedToLineAcquisition;
         public bool isToolRearFixed, isToolFrontFixed;
 
         public bool isMultiColoredSections, isSectionOffWhenOut;
@@ -66,6 +67,7 @@ namespace AgOpenGPS
 
             trailingToolToPivotLength = Properties.ToolSettings.Default.setTool_trailingToolToPivotLength;
             minTurnRadius = Properties.ToolSettings.Default.setTool_minTurnRadius;
+            isMinTurnRadiusAppliedToLineAcquisition = Properties.ToolSettings.Default.setTool_isMinTurnRadiusAppliedToLineAcquisition;
             width = Properties.ToolSettings.Default.setVehicle_toolWidth;
             overlap = Properties.ToolSettings.Default.setVehicle_toolOverlap;
 

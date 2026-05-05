@@ -188,6 +188,7 @@ namespace AgOpenGPS
             AddRow(left, "Tank Trailing", tsDefault.setVehicle_tankTrailingHitchLength, ts.setVehicle_tankTrailingHitchLength);
             AddRow(left, "Trailing To Pivot", tsDefault.setTool_trailingToolToPivotLength, ts.setTool_trailingToolToPivotLength);
             AddRow(left, "Min Turn Radius", tsDefault.setTool_minTurnRadius, ts.setTool_minTurnRadius);
+            AddRow(left, "Min Radius Line Acquisition", tsDefault.setTool_isMinTurnRadiusAppliedToLineAcquisition, ts.setTool_isMinTurnRadiusAppliedToLineAcquisition);
             AddRow(mid, "Hitch Length", tsDefault.setVehicle_hitchLength, ts.setVehicle_hitchLength);
 
 

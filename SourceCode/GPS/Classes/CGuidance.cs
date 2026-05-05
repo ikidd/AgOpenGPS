@@ -97,8 +97,7 @@ namespace AgOpenGPS
             if (mf.ahrs.imuRoll != 88888)
                 steerAngleGu += mf.ahrs.imuRoll * -sideHillCompFactor;
 
-            if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
-            else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
+            steerAngleGu = mf.yt.ClampLineAcquisitionSteerAngle(steerAngleGu, mf.vehicle.maxSteerAngle, mf.vehicle.VehicleConfig.Wheelbase);
 
             //used for smooth mode
             mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);

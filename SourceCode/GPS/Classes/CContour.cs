@@ -398,8 +398,7 @@ namespace AgOpenGPS
 
                     steerAngleCT = glm.toDegrees((steerAngleCT + abFixHeadingDelta) * -1.0);
 
-                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
-                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
+                    steerAngleCT = mf.yt.ClampLineAcquisitionSteerAngle(steerAngleCT, mf.vehicle.maxSteerAngle, mf.vehicle.VehicleConfig.Wheelbase);
                 }
                 else
                 {
@@ -539,8 +538,7 @@ namespace AgOpenGPS
                     if (mf.ahrs.imuRoll != 88888)
                         steerAngleCT += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
 
-                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
-                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
+                    steerAngleCT = mf.yt.ClampLineAcquisitionSteerAngle(steerAngleCT, mf.vehicle.maxSteerAngle, mf.vehicle.VehicleConfig.Wheelbase);
                 }
 
                 //used for smooth mode

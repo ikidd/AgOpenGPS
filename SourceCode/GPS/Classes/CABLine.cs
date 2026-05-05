@@ -291,8 +291,7 @@ namespace AgOpenGPS
 
                 //steerAngleAB *= 1.4;
 
-                if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
-                if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
+                steerAngleAB = mf.yt.ClampLineAcquisitionSteerAngle(steerAngleAB, mf.vehicle.maxSteerAngle, mf.vehicle.VehicleConfig.Wheelbase);
 
                 //limit circle size for display purpose
                 if (ppRadiusAB < -500) ppRadiusAB = -500;

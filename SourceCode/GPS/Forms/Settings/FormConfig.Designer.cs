@@ -169,6 +169,7 @@ namespace AgOpenGPS
             this.label178 = new System.Windows.Forms.Label();
             this.labelToolMinTurnRadiusUnits = new System.Windows.Forms.Label();
             this.labelToolMinTurnRadius = new System.Windows.Forms.Label();
+            this.chkMinTurnRadiusLineAcquisition = new System.Windows.Forms.CheckBox();
             this.labelBoundary = new System.Windows.Forms.Label();
             this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.labelChoose = new System.Windows.Forms.Label();
@@ -2311,6 +2312,7 @@ namespace AgOpenGPS
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabTSections.Controls.Add(this.panelSymmetricSections);
+            this.tabTSections.Controls.Add(this.chkMinTurnRadiusLineAcquisition);
             this.tabTSections.Controls.Add(this.labelToolMinTurnRadiusUnits);
             this.tabTSections.Controls.Add(this.labelToolMinTurnRadius);
             this.tabTSections.Controls.Add(this.nudToolMinTurnRadius);
@@ -2975,7 +2977,26 @@ namespace AgOpenGPS
             this.labelToolMinTurnRadius.TabIndex = 505;
             this.labelToolMinTurnRadius.Text = "Min Turn Radius";
             this.labelToolMinTurnRadius.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
+            //
+            // chkMinTurnRadiusLineAcquisition
+            //
+            this.chkMinTurnRadiusLineAcquisition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkMinTurnRadiusLineAcquisition.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkMinTurnRadiusLineAcquisition.BackColor = System.Drawing.Color.AliceBlue;
+            this.chkMinTurnRadiusLineAcquisition.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
+            this.chkMinTurnRadiusLineAcquisition.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.chkMinTurnRadiusLineAcquisition.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMinTurnRadiusLineAcquisition.ForeColor = System.Drawing.Color.Black;
+            this.chkMinTurnRadiusLineAcquisition.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkMinTurnRadiusLineAcquisition.Location = new System.Drawing.Point(638, 482);
+            this.chkMinTurnRadiusLineAcquisition.Name = "chkMinTurnRadiusLineAcquisition";
+            this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(190, 50);
+            this.chkMinTurnRadiusLineAcquisition.TabIndex = 507;
+            this.chkMinTurnRadiusLineAcquisition.Text = "Use For Line Acquisition";
+            this.chkMinTurnRadiusLineAcquisition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkMinTurnRadiusLineAcquisition.UseVisualStyleBackColor = false;
+            this.chkMinTurnRadiusLineAcquisition.CheckedChanged += new System.EventHandler(this.chkMinTurnRadiusLineAcquisition_CheckedChanged);
+            //
             // labelBoundary
             // 
             this.labelBoundary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -9228,6 +9249,7 @@ namespace AgOpenGPS
         private System.Windows.Forms.Label label178;
         private System.Windows.Forms.Label labelToolMinTurnRadiusUnits;
         private System.Windows.Forms.Label labelToolMinTurnRadius;
+        private System.Windows.Forms.CheckBox chkMinTurnRadiusLineAcquisition;
         private NudlessNumericUpDown nudToolMinTurnRadius;
         private System.Windows.Forms.Button btnZeroToolOffset;
         private System.Windows.Forms.Button btnZeroOverlap;

@@ -107,9 +107,46 @@ namespace AgOpenGPS
             return GetEffectiveTurnRadius(youTurnRadius, mf?.tool?.minTurnRadius ?? 0.0);
         }
 
+        public double GetLineAcquisitionSteerLimit(double vehicleMaxSteerAngle, double wheelbase)
+        {
+            return GetLineAcquisitionSteerLimit(
+                vehicleMaxSteerAngle,
+                wheelbase,
+                GetEffectiveTurnRadius(),
+                mf?.tool?.isMinTurnRadiusAppliedToLineAcquisition ?? false);
+        }
+
+        public double ClampLineAcquisitionSteerAngle(double steerAngle, double vehicleMaxSteerAngle, double wheelbase)
+        {
+            return ClampLineAcquisitionSteerAngle(
+                steerAngle,
+                vehicleMaxSteerAngle,
+                wheelbase,
+                GetEffectiveTurnRadius(),
+                mf?.tool?.isMinTurnRadiusAppliedToLineAcquisition ?? false);
+        }
+
         public static double GetEffectiveTurnRadius(double baseTurnRadius, double toolMinTurnRadius)
         {
             return Math.Max(baseTurnRadius, toolMinTurnRadius);
+        }
+
+        public static double GetLineAcquisitionSteerLimit(double vehicleMaxSteerAngle, double wheelbase, double effectiveTurnRadius, bool applyToolMinTurnRadius)
+        {
+            if (!applyToolMinTurnRadius || wheelbase <= 0.0 || effectiveTurnRadius <= 0.0)
+                return vehicleMaxSteerAngle;
+
+            double radiusSteerLimit = glm.toDegrees(Math.Atan(wheelbase / effectiveTurnRadius));
+            return Math.Min(vehicleMaxSteerAngle, radiusSteerLimit);
+        }
+
+        public static double ClampLineAcquisitionSteerAngle(double steerAngle, double vehicleMaxSteerAngle, double wheelbase, double effectiveTurnRadius, bool applyToolMinTurnRadius)
+        {
+            double steerLimit = GetLineAcquisitionSteerLimit(vehicleMaxSteerAngle, wheelbase, effectiveTurnRadius, applyToolMinTurnRadius);
+
+            if (steerAngle < -steerLimit) return -steerLimit;
+            if (steerAngle > steerLimit) return steerLimit;
+            return steerAngle;
         }
 
         //find next not worked lane after the defined lanes to skip

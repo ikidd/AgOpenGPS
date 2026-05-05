@@ -1003,8 +1003,7 @@ namespace AgOpenGPS
                     if (mf.ahrs.imuRoll != 88888)
                         steerAngleCu += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
 
-                    if (steerAngleCu < -mf.vehicle.maxSteerAngle) steerAngleCu = -mf.vehicle.maxSteerAngle;
-                    if (steerAngleCu > mf.vehicle.maxSteerAngle) steerAngleCu = mf.vehicle.maxSteerAngle;
+                    steerAngleCu = mf.yt.ClampLineAcquisitionSteerAngle(steerAngleCu, mf.vehicle.maxSteerAngle, mf.vehicle.VehicleConfig.Wheelbase);
 
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
