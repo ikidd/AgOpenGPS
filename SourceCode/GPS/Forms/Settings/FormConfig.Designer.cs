@@ -1810,6 +1810,10 @@ namespace AgOpenGPS
             // tabTHitch
             // 
             this.tabTHitch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTHitch.Controls.Add(this.chkMinTurnRadiusLineAcquisition);
+            this.tabTHitch.Controls.Add(this.labelToolMinTurnRadiusUnits);
+            this.tabTHitch.Controls.Add(this.labelToolMinTurnRadius);
+            this.tabTHitch.Controls.Add(this.nudToolMinTurnRadius);
             this.tabTHitch.Controls.Add(this.label112);
             this.tabTHitch.Controls.Add(this.labelTractorUnits);
             this.tabTHitch.Controls.Add(this.nudTrailingHitchLength);
@@ -2312,10 +2316,6 @@ namespace AgOpenGPS
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabTSections.Controls.Add(this.panelSymmetricSections);
-            this.tabTSections.Controls.Add(this.chkMinTurnRadiusLineAcquisition);
-            this.tabTSections.Controls.Add(this.labelToolMinTurnRadiusUnits);
-            this.tabTSections.Controls.Add(this.labelToolMinTurnRadius);
-            this.tabTSections.Controls.Add(this.nudToolMinTurnRadius);
             this.tabTSections.Controls.Add(this.label178);
             this.tabTSections.Controls.Add(this.labelBoundary);
             this.tabTSections.Controls.Add(this.lblTurnOffBelowUnits);
@@ -2952,12 +2952,12 @@ namespace AgOpenGPS
             // 
             // labelToolMinTurnRadiusUnits
             // 
-            this.labelToolMinTurnRadiusUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelToolMinTurnRadiusUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelToolMinTurnRadiusUnits.AutoSize = true;
             this.labelToolMinTurnRadiusUnits.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelToolMinTurnRadiusUnits.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelToolMinTurnRadiusUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelToolMinTurnRadiusUnits.Location = new System.Drawing.Point(800, 444);
+            this.labelToolMinTurnRadiusUnits.Location = new System.Drawing.Point(804, 511);
             this.labelToolMinTurnRadiusUnits.Name = "labelToolMinTurnRadiusUnits";
             this.labelToolMinTurnRadiusUnits.Size = new System.Drawing.Size(28, 19);
             this.labelToolMinTurnRadiusUnits.TabIndex = 506;
@@ -2966,21 +2966,21 @@ namespace AgOpenGPS
             // 
             // labelToolMinTurnRadius
             // 
-            this.labelToolMinTurnRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelToolMinTurnRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelToolMinTurnRadius.BackColor = System.Drawing.Color.Transparent;
             this.labelToolMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.labelToolMinTurnRadius.ForeColor = System.Drawing.Color.Black;
             this.labelToolMinTurnRadius.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelToolMinTurnRadius.Location = new System.Drawing.Point(638, 400);
+            this.labelToolMinTurnRadius.Location = new System.Drawing.Point(619, 461);
             this.labelToolMinTurnRadius.Name = "labelToolMinTurnRadius";
-            this.labelToolMinTurnRadius.Size = new System.Drawing.Size(190, 32);
+            this.labelToolMinTurnRadius.Size = new System.Drawing.Size(210, 32);
             this.labelToolMinTurnRadius.TabIndex = 505;
             this.labelToolMinTurnRadius.Text = "Min Turn Radius";
             this.labelToolMinTurnRadius.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             //
             // chkMinTurnRadiusLineAcquisition
             //
-            this.chkMinTurnRadiusLineAcquisition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkMinTurnRadiusLineAcquisition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkMinTurnRadiusLineAcquisition.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkMinTurnRadiusLineAcquisition.BackColor = System.Drawing.Color.AliceBlue;
             this.chkMinTurnRadiusLineAcquisition.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
@@ -2988,9 +2988,9 @@ namespace AgOpenGPS
             this.chkMinTurnRadiusLineAcquisition.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkMinTurnRadiusLineAcquisition.ForeColor = System.Drawing.Color.Black;
             this.chkMinTurnRadiusLineAcquisition.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkMinTurnRadiusLineAcquisition.Location = new System.Drawing.Point(638, 482);
+            this.chkMinTurnRadiusLineAcquisition.Location = new System.Drawing.Point(619, 532);
             this.chkMinTurnRadiusLineAcquisition.Name = "chkMinTurnRadiusLineAcquisition";
-            this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(190, 50);
+            this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(210, 40);
             this.chkMinTurnRadiusLineAcquisition.TabIndex = 507;
             this.chkMinTurnRadiusLineAcquisition.Text = "Use For Line Acquisition";
             this.chkMinTurnRadiusLineAcquisition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3415,7 +3415,7 @@ namespace AgOpenGPS
             // 
             // nudToolMinTurnRadius
             // 
-            this.nudToolMinTurnRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudToolMinTurnRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.nudToolMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
             this.nudToolMinTurnRadius.DecimalPlaces = 1;
             this.nudToolMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3425,7 +3425,7 @@ namespace AgOpenGPS
             0,
             65536});
             this.nudToolMinTurnRadius.InterceptArrowKeys = false;
-            this.nudToolMinTurnRadius.Location = new System.Drawing.Point(638, 435);
+            this.nudToolMinTurnRadius.Location = new System.Drawing.Point(619, 493);
             this.nudToolMinTurnRadius.Maximum = new decimal(new int[] {
             100,
             0,
@@ -3433,7 +3433,7 @@ namespace AgOpenGPS
             0});
             this.nudToolMinTurnRadius.Name = "nudToolMinTurnRadius";
             this.nudToolMinTurnRadius.ReadOnly = true;
-            this.nudToolMinTurnRadius.Size = new System.Drawing.Size(156, 52);
+            this.nudToolMinTurnRadius.Size = new System.Drawing.Size(179, 52);
             this.nudToolMinTurnRadius.TabIndex = 504;
             this.nudToolMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudToolMinTurnRadius.Click += new System.EventHandler(this.nudToolMinTurnRadius_Click);

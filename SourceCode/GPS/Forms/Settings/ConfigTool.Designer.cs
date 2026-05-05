@@ -209,6 +209,10 @@ namespace AgOpenGPS
 
             nudTrailingHitchLength.Value = (int)(Math.Abs(Properties.ToolSettings.Default.setVehicle_toolTrailingHitchLength) * mf.m2InchOrCm);
             nudTankHitch.Value = (int)(Math.Abs(Properties.ToolSettings.Default.setVehicle_tankTrailingHitchLength) * mf.m2InchOrCm);
+
+            labelToolMinTurnRadiusUnits.Text = mf.unitsFtM;
+            nudToolMinTurnRadius.Value = (decimal)Math.Round(Properties.ToolSettings.Default.setTool_minTurnRadius * mf.m2FtOrM, 1);
+            chkMinTurnRadiusLineAcquisition.Checked = Properties.ToolSettings.Default.setTool_isMinTurnRadiusAppliedToLineAcquisition;
         }
 
         private void tabTHitch_Leave(object sender, EventArgs e)
@@ -688,9 +692,6 @@ namespace AgOpenGPS
             }
 
             label178.Text = mf.unitsInCm;
-            labelToolMinTurnRadiusUnits.Text = mf.unitsFtM;
-            nudToolMinTurnRadius.Value = (decimal)Math.Round(Properties.ToolSettings.Default.setTool_minTurnRadius * mf.m2FtOrM, 1);
-            chkMinTurnRadiusLineAcquisition.Checked = Properties.ToolSettings.Default.setTool_isMinTurnRadiusAppliedToLineAcquisition;
         }
 
         private void tabTSections_Leave(object sender, EventArgs e)
