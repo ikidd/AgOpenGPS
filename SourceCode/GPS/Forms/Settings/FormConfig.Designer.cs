@@ -2988,9 +2988,9 @@ namespace AgOpenGPS
             this.chkMinTurnRadiusLineAcquisition.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkMinTurnRadiusLineAcquisition.ForeColor = System.Drawing.Color.Black;
             this.chkMinTurnRadiusLineAcquisition.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkMinTurnRadiusLineAcquisition.Location = new System.Drawing.Point(619, 532);
+            this.chkMinTurnRadiusLineAcquisition.Location = new System.Drawing.Point(619, 550);
             this.chkMinTurnRadiusLineAcquisition.Name = "chkMinTurnRadiusLineAcquisition";
-            this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(210, 40);
+            this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(210, 30);
             this.chkMinTurnRadiusLineAcquisition.TabIndex = 507;
             this.chkMinTurnRadiusLineAcquisition.Text = "Line Acquisition: OFF";
             this.chkMinTurnRadiusLineAcquisition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
