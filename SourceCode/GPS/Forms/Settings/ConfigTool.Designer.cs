@@ -213,6 +213,7 @@ namespace AgOpenGPS
             labelToolMinTurnRadiusUnits.Text = mf.unitsFtM;
             nudToolMinTurnRadius.Value = (decimal)Math.Round(Properties.ToolSettings.Default.setTool_minTurnRadius * mf.m2FtOrM, 1);
             chkMinTurnRadiusLineAcquisition.Checked = Properties.ToolSettings.Default.setTool_isMinTurnRadiusAppliedToLineAcquisition;
+            UpdateMinTurnRadiusLineAcquisitionToggle();
         }
 
         private void tabTHitch_Leave(object sender, EventArgs e)
@@ -1137,6 +1138,17 @@ namespace AgOpenGPS
             mf.tool.isMinTurnRadiusAppliedToLineAcquisition = chkMinTurnRadiusLineAcquisition.Checked;
             Properties.ToolSettings.Default.setTool_isMinTurnRadiusAppliedToLineAcquisition = chkMinTurnRadiusLineAcquisition.Checked;
             Properties.ToolSettings.Default.Save();
+            UpdateMinTurnRadiusLineAcquisitionToggle();
+        }
+
+        private void UpdateMinTurnRadiusLineAcquisitionToggle()
+        {
+            chkMinTurnRadiusLineAcquisition.Text = chkMinTurnRadiusLineAcquisition.Checked
+                ? "Line Acquisition: ON"
+                : "Line Acquisition: OFF";
+            chkMinTurnRadiusLineAcquisition.BackColor = chkMinTurnRadiusLineAcquisition.Checked
+                ? Color.LightGreen
+                : Color.AliceBlue;
         }
 
         private void nudNumberOfSections_Click(object sender, EventArgs e)

@@ -2984,7 +2984,7 @@ namespace AgOpenGPS
             this.chkMinTurnRadiusLineAcquisition.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkMinTurnRadiusLineAcquisition.BackColor = System.Drawing.Color.AliceBlue;
             this.chkMinTurnRadiusLineAcquisition.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGreen;
-            this.chkMinTurnRadiusLineAcquisition.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.chkMinTurnRadiusLineAcquisition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkMinTurnRadiusLineAcquisition.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkMinTurnRadiusLineAcquisition.ForeColor = System.Drawing.Color.Black;
             this.chkMinTurnRadiusLineAcquisition.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2992,7 +2992,7 @@ namespace AgOpenGPS
             this.chkMinTurnRadiusLineAcquisition.Name = "chkMinTurnRadiusLineAcquisition";
             this.chkMinTurnRadiusLineAcquisition.Size = new System.Drawing.Size(210, 40);
             this.chkMinTurnRadiusLineAcquisition.TabIndex = 507;
-            this.chkMinTurnRadiusLineAcquisition.Text = "Use For Line Acquisition";
+            this.chkMinTurnRadiusLineAcquisition.Text = "Line Acquisition: OFF";
             this.chkMinTurnRadiusLineAcquisition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkMinTurnRadiusLineAcquisition.UseVisualStyleBackColor = false;
             this.chkMinTurnRadiusLineAcquisition.CheckedChanged += new System.EventHandler(this.chkMinTurnRadiusLineAcquisition_CheckedChanged);
